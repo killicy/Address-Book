@@ -1,0 +1,30 @@
+version: '3'
+services:
+  php-apache:
+    build:
+      context: ./docker-src/PHP
+    ports:
+      - 80:80
+    volumes:
+      - ./DocRoot:/var/www/html
+    networks:
+      - internal
+  mariadb:
+    image: mariadb:10.1
+    volumes:
+      - mariadb:/var/lib/mysql
+    environment:
+      TZ: "America/New_York"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_ROOT_PASSWORD: "rootpwd"
+      MYSQL_USER: 'testuser'
+      MYSQL_PASSWORD: 'testpassword'
+      MYSQL_DATABASE: 'testdb'
+    networks:
+      - internal
+
+networks:
+  internal:
+
+volumes:
+  mariadb: {}
