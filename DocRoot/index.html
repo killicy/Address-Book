@@ -1,5 +1,22 @@
 <html>
-<body>
-	test
-</body>
+	<head>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="js/common.js"></script>
+	</head>
+	<body>
+		<form action="api/login.php" method="post" onsubmit="return login(event)">
+			<ul>
+				<li>
+					<lable for="login-name">Username</lable>
+					<input type="text" id="username" name="user">
+				</li>
+				<li>
+					<lable for="password">Password</lable>
+					<input type="password" id="password" name="pass">
+				</li>
+			</ul>
+			<input type="submit" value="Submit">
+		</form>
+		<span id="error"></span>
+	</body>
 </html>
