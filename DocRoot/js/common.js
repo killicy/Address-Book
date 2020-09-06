@@ -1,46 +1,27 @@
-
 function doLogin() {
-	var url = '/LAMPAPI/Login.php';
+	var url = '/api/login.php';
 	userId = 0;
 	firstName = "";
 	lastName = "";
 
-	var login = document.getElementById("loginName").value;
-	var passWord = document.getElementById("loginPassword").value;
+	var login = $("#loginName").val();
+	var password = $("#loginPassword").val();
+	var jsonPayload = {loginName: login, loginPassword: password};
 
-	document.getElementById("loginButtonText").innerHTML = "";
-
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + passWord + '"}';
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false)
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
-		xhr.send(jsonPayload);
-
-		var jsonObject = JSON.parse(xhr.responseText);
-
-		userId = jsonObject.id;
-
-		if(userId < 1)
-		{
-			document.getElementById("loginButtonText").innerHTML = jsonObject.error;
-			return;
+	$.post(url, JSON.stringify(jsonPayload), function(data) {
+		console.log(data.error.length);
+		if (data.error.length > 0) {
+			$("#SignUpResult").html("Error: " + data.error);
 		}
-
-		firstName = jsonObject.firstName;
-		lastName = jsonObject.lastName;
-
-	}
-	catch (err) {
-		document.getElementById("loginButtonText").innerHTML = jsonObject.error;
-
-	}
+		else {
+			$("#SignUpResult").html("Success");
+		}
+	});
 }
 
 
 function doCreate() {
-	var url = '/LAMPAPI/Create.php';
+	var url = '/LAMPAPI/create.php';
 	userId = 0;
 	firstName = "";
 	lastName = "";
