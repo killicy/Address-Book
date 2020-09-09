@@ -40,7 +40,7 @@ function doCreate() {
 	var login = $("#loginName").val();
 	var password = $("#loginPassword").val();
 
-	var jsonPayload = {loginName: login, loginPassword: password, fname: firstname, lname: lastname};
+	var jsonPayload = {login: login, password: password, fname: firstname, lname: lastname};
 	if((login.length == 0 || password.length == 0) || firstname.length == 0 || lastname.length == 0){
 		exit();
 	}

@@ -11,7 +11,7 @@ $lastName = "";
 try {
 	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user");
 	$stmt->execute([
-		'user' => $inData["loginName"],
+		'user' => $inData["login"],
 	]);
 
 	$user = $stmt->fetch();
@@ -23,13 +23,13 @@ try {
 		// $sql = "INSERT INTO Users (Login,Password,FirstName,LastName) VALUES ('".$inData["login"] . "','" . $inData["password"] . "','" . $inData["firstname"] . "','" . $inData["lastname"] . "')";
 		$stmt = $msql_connection->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (:user, :password, :firstname, :lastname)");
 		 $stmt->execute([
-		 	'user' => $inData["loginName"],
-		 	'password' => $inData["loginPassword"],
+		 	'user' => $inData["login"],
+		 	'password' => $inData["password"],
 		 	'firstname' => $inData["fname"],
 		 	'lastname' =>  $inData["lname"],
 		 ]);
 
-		returnWithInfo($inData["fname"], $inData["lname"], $inData['loginName']);
+		returnWithInfo($inData["fname"], $inData["lname"], $inData['login']);
 	}
 }
 catch(Exception $e) {
