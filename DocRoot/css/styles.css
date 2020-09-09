@@ -1,0 +1,184 @@
+
+body {
+  margin: 0;
+
+}
+
+#background {
+  height: 100%;
+  width: 100%;
+  background-image: url('../media/background.jpg');
+  opacity: 1;
+}
+
+
+#para{
+  position: fixed;
+  background-color: rgba(1, 27, 78, .7);
+  height: 100%;
+  width: 100%;
+}
+
+
+#loginDiv {
+  position: fixed;
+
+  border: 3px solid #233957;
+
+  top: 60%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  border-radius: 50px;
+
+  height: 50%;
+  width: 25%;
+
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+
+#UserName {
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+#passWord {
+  margin-top: 10%;
+  margin-left: 10%;
+
+}
+
+#loginText {
+font-size: 100%;
+color: 	#233957;
+font-weight: bold;
+font-family: "Georgia", Times, serif;
+}
+
+
+#loginName {
+  padding-left: 3%;
+  outline:none;
+  border-radius: 10px;
+  border-color: lightslategrey;
+  text-align: left;
+  font-size: 100%;
+  font-family: "Georgia", Times, serif;
+  margin: auto;
+  height: 10%;
+  width: 90%;
+}
+
+#passWordText {
+color: 	#233957;
+font-size: 100%;
+font-weight: bold;
+font-family: "Georgia", Times, serif;
+}
+
+#loginPassword {
+  padding-left: 3%;
+  outline:none;
+  border-radius: 10px;
+  border-color: lightslategrey;
+  text-align: left;
+  font-size: 100%;
+  margin: auto;
+  height: 10%;
+  width: 90%;
+}
+
+
+#loginButton {
+  outline:none;
+  background-color: #005ecd;
+  border-color:#005ecd;
+  margin-top: 10%;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 10%;
+  width: 81%;
+  height: 12%;
+  cursor: pointer;
+}
+
+#loginButtonText {
+color: #FFFFFF;
+font-size: 20px;
+font-family: "Georgia", Times, serif;
+}
+
+#signUpButton {
+  outline:none;
+  background-color: #03afe6;
+  border-color:#03afe6;
+  border-radius: 2px;
+  margin-top: 5%;
+  border-radius: 10px;
+  text-align: center;
+  margin-left: 10%;
+  width: 81%;
+  height: 12%;
+  cursor: pointer;
+}
+
+#signUpButtonText {
+color: #FFFFFF;
+font-size: 20px;
+font-family: "Georgia", Times, serif;
+}
+
+#registrationHeader {
+  position: fixed;
+
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#message{
+  text-align: center;
+}
+
+#regDiv {
+  position: fixed;
+
+  border: 3px solid #233957;
+
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+
+  border-radius: 50px;
+
+  height: 70%;
+  width: 25%;
+
+  background-color: #ffffff;
+  padding: 10px;
+
+  text-align: left;
+
+
+}
+
+#loginName {
+  padding-left: 3%;
+  outline:none;
+  border-radius: 10px;
+  border-color: lightslategrey;
+  text-align: left;
+  font-size: 100%;
+  font-family: "Georgia", Times, serif;
+  margin: auto;
+  width: 90%;
+}
+
+#regForm {
+  margin-top: 5%;
+
+}

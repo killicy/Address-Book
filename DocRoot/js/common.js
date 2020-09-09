@@ -1,69 +1,58 @@
+var sideMenu = false;
 
 function doLogin() {
-	var url = '/LAMPAPI/Login.php';
+
+	var url = '/api/login.php';
 	userId = 0;
 	firstName = "";
 	lastName = "";
 
-	var login = document.getElementById("loginName").value;
-	var passWord = document.getElementById("loginPassword").value;
+	var login = $("#loginName").val();
+	var password = $("#loginPassword").val();
+	var jsonPayload = {login: login, password: password};
 
-	document.getElementById("loginButtonText").innerHTML = "";
+	if((login.length == 0 || password.length == 0)){
+		$("#SignUpResult").html("Please enter username and password");
+		exit();
+	}
 
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + passWord + '"}';
-
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false)
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try {
-		xhr.send(jsonPayload);
-
-		var jsonObject = JSON.parse(xhr.responseText);
-
-		userId = jsonObject.id;
-
-		if(userId < 1)
-		{
-			document.getElementById("loginButtonText").innerHTML = jsonObject.error;
-			return;
+	$.post(url, JSON.stringify(jsonPayload), function(data) {
+		console.log(data.error.length);
+		if (data.error) {
+			$("#SignUpResult").html("Error: " + data.error);
 		}
-
-		firstName = jsonObject.firstName;
-		lastName = jsonObject.lastName;
-
-	}
-	catch (err) {
-		document.getElementById("loginButtonText").innerHTML = jsonObject.error;
-
-	}
+		else {
+			$("#SignUpResult").html("Success");
+		}
+	});
 }
 
+function doRegister() {
+	window.location.href = ("registration.html");
+}
 
 function doCreate() {
-	var url = '/LAMPAPI/Create.php';
+	var url = '/api/create.php';
 	userId = 0;
 	firstName = "";
 	lastName = "";
-
-	var login = document.getElementById("loginName").value;
-	var passWord = document.getElementById("loginPassword").value;
-
-	document.getElementById("signUpButtonText").innerHTML = "";
-
-	var jsonPayload = '{"login" : "' + login + '", "password" : "' + passWord + '"}';
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", url, false)
-	xhr.setRequestHeader("Content-type", "application/json");
-	try {
-		xhr.send(jsonPayload);
-		var jsonObject = JSON.parse(xhr.responseText);
-
-		document.getElementById("signUpButtonText").innerHTML = jsonObject.error;
-
-
+	var firstname = $("#fname").val();
+	var lastname = $("#lname").val();
+	var login = $("#uname").val();
+	var password = $("#pword").val();
+	var jsonPayload = {login: login, password: password, firstname: firstname, lastname: lastname};
+	if((login.length == 0 || password.length == 0) || firstname.length == 0 || lastname.length == 0){
+		exit();
 	}
-	catch (err) {
-		document.getElementById("signUpButtonText").innerHTML = 'Success';
 
-	}
+	$.post(url, JSON.stringify(jsonPayload), function(data) {
+		if (data) {
+			$("#SignUpResult").html("Error: " + data.error);
+		}
+		else {
+			$("#SignUpResult").html("Success");
+			window.location.href = ("index.html");
+
+		}
+	});
 }
