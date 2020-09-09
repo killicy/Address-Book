@@ -1,7 +1,7 @@
 <?php
 
 require_once("../config.php");
-$sql = file_get_contents('dylan_addressbook.sql');
+$sql = file_get_contents('localhost.sql');
 
 try {
 	$msql_connection->exec('DROP DATABASE testdb;');
