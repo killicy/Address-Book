@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../config.php");
+require_once("../config.php");
 $inData = getRequestInfo();
 
 $id = 0;
@@ -25,11 +25,11 @@ try {
 		 $stmt->execute([
 		 	'user' => $inData["login"],
 		 	'password' => $inData["password"],
-		 	'firstname' => $inData["firstname"],
-		 	'lastname' =>  $inData["lastname"],
+		 	'firstname' => $inData["fname"],
+		 	'lastname' =>  $inData["lname"],
 		 ]);
 
-		returnWithInfo("", "", $inData['login']);
+		returnWithInfo($inData["fname"], $inData["lname"], $inData['login']);
 	}
 }
 catch(Exception $e) {
