@@ -11,7 +11,7 @@ $lastName = "";
 try {
 	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user");
 	$stmt->execute([
-		'user' => $inData["loginName"],
+		'user' => $inData["login"],
 	]);
 
 	$user = $stmt->fetch();
@@ -23,19 +23,19 @@ try {
 		// $sql = "INSERT INTO Users (Login,Password,FirstName,LastName) VALUES ('".$inData["login"] . "','" . $inData["password"] . "','" . $inData["firstname"] . "','" . $inData["lastname"] . "')";
 		$stmt = $msql_connection->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (:user, :password, :firstname, :lastname)");
 		 $stmt->execute([
-		 	'user' => $inData["loginName"],
-		 	'password' => $inData["loginPassword"],
-		 	'firstname' => "",
-		 	'lastname' =>  "",
+		 	'user' => $inData["login"],
+		 	'password' => $inData["password"],
+		 	'firstname' => $inData["firstname"],
+		 	'lastname' =>  $inData["lastname"],
 		 ]);
 
-		returnWithInfo("", "", $inData['loginName']);
+		returnWithInfo("", "", $inData['login']);
 	}
 }
 catch(Exception $e) {
 	returnWithError("Failed while executing query:" . $e->getMessage());
 }
-	
+
 function getRequestInfo()
 {
 	return json_decode(file_get_contents('php://input'), true);
@@ -58,5 +58,3 @@ function returnWithInfo( $firstName, $lastName, $loginName )
 	$retValue = '{"loginName":"' . $loginName . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson( $retValue );
 }
-	
-?>

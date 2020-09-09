@@ -1,4 +1,6 @@
+var sideMenu = false;
 function doLogin() {
+
 	var url = '/api/login.php';
 	userId = 0;
 	firstName = "";
@@ -6,10 +8,16 @@ function doLogin() {
 
 	var login = $("#loginName").val();
 	var password = $("#loginPassword").val();
-	var jsonPayload = {loginName: login, loginPassword: password};
+	var jsonPayload = {login: login, password: password};
+
+	if((login.length == 0 || password.length == 0)){
+		$("#SignUpResult").html("Please enter username and password");
+		exit();
+	}
 
 	$.post(url, JSON.stringify(jsonPayload), function(data) {
-		if (data.error.length > 0) {
+		console.log(data.error.length);
+		if (data.error) {
 			$("#SignUpResult").html("Error: " + data.error);
 		}
 		else {
@@ -18,6 +26,9 @@ function doLogin() {
 	});
 }
 
+function doRegister() {
+	window.location.href = ("registration.html");
+}
 
 function doCreate() {
 	var url = '/api/create.php';
@@ -25,16 +36,22 @@ function doCreate() {
 	firstName = "";
 	lastName = "";
 
-	var login = $("#loginName").val();
-	var password = $("#loginPassword").val();
-	var jsonPayload = {loginName: login, loginPassword: password};
+	var firstname = $("#fname").val();
+	var lastname = $("#lname").val();
+	var login = $("#uname").val();
+	var password = $("#pword").val();
+	var jsonPayload = {login: login, password: password, firstname: firstname, lastname: lastname};
+	if((login.length == 0 || password.length == 0) || firstname.length == 0 || lastname.length == 0){
+		exit();
+	}
 
 	$.post(url, JSON.stringify(jsonPayload), function(data) {
-		if (data.error.length > 0) {
+		if (data) {
 			$("#SignUpResult").html("Error: " + data.error);
 		}
 		else {
-			$("#signUpButtonText").html("Success");
+			$("#SignUpResult").html("Success");
+			window.location.href = ("index.html");
 		}
 	});
 }
