@@ -10,8 +10,8 @@ $lastName = "";
 // $sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
 $stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user AND Password=:pass");
 $stmt->execute([
-	'user' => $inData["login"],
-	'pass' => $inData["password"]
+	'user' => $inData["loginName"],
+	'pass' => $inData["loginPassword"]
 ]);
 $user = $stmt->fetch();
 

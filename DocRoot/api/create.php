@@ -1,6 +1,6 @@
 <?php
 
-	require_once("../config.php");
+require_once("../config.php");
 $inData = getRequestInfo();
 
 $id = 0;
@@ -11,7 +11,7 @@ $lastName = "";
 try {
 	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user");
 	$stmt->execute([
-		'user' => $inData["login"],
+		'user' => $inData["loginName"],
 	]);
 
 	$user = $stmt->fetch();
@@ -23,13 +23,13 @@ try {
 		// $sql = "INSERT INTO Users (Login,Password,FirstName,LastName) VALUES ('".$inData["login"] . "','" . $inData["password"] . "','" . $inData["firstname"] . "','" . $inData["lastname"] . "')";
 		$stmt = $msql_connection->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (:user, :password, :firstname, :lastname)");
 		 $stmt->execute([
-		 	'user' => $inData["login"],
-		 	'password' => $inData["password"],
-		 	'firstname' => $inData["firstname"],
-		 	'lastname' =>  $inData["lastname"],
+		 	'user' => $inData["loginName"],
+		 	'password' => $inData["loginPassword"],
+		 	'firstname' => $inData["fname"],
+		 	'lastname' =>  $inData["lname"],
 		 ]);
 
-		returnWithInfo("", "", $inData['login']);
+		returnWithInfo($inData["fname"], $inData["lname"], $inData['loginName']);
 	}
 }
 catch(Exception $e) {
