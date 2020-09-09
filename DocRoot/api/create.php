@@ -1,54 +1,62 @@
 <?php
 
-	$inData = getRequestInfo();
-	
-	$id = 0;
-	$firstName = "";
-	$lastName = "";
+	require_once("../config.php");
+$inData = getRequestInfo();
 
-	$conn = new mysqli("localhost", "dylan_dtilley", "lf+j3_7U%SZv", "dylan_addressbook");
-	if ($conn->connect_error) 
-	{
-		returnWithError( $conn->connect_error );
-	} 
-	else
-	{
+$id = 0;
+$firstName = "";
+$lastName = "";
 
-		$sql = "SELECT ID FROM Users where Login='" . $inData["login"] . "'";
-		$result = $conn->query($sql);
-		if ($result->num_rows > 0)
-		{
-			returnWithError( "User Name Already Exists!" );
-			exit();
-			
-		}
-		
-		$sql = "INSERT INTO Users (Login,Password,FirstName,LastName) VALUES ('".$inData["login"] . "','" . $inData["password"] . "','" . $inData["firstname"] . "','" . $inData["lastname"] . "')";
-		$result = $conn->query($sql);
-		$conn->close();
-	}
-	
-	function getRequestInfo()
-	{
-		return json_decode(file_get_contents('php://input'), true);
-	}
+// $sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
+try {
+	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user");
+	$stmt->execute([
+		'user' => $inData["loginName"],
+	]);
 
-	function sendResultInfoAsJson( $obj )
-	{
-		header('Content-type: application/json');
-		echo $obj;
+	$user = $stmt->fetch();
+	if (!empty($user)) {
+		returnWithError( "User Name Already Exists!" );
+		exit();
 	}
+	else {
+		// $sql = "INSERT INTO Users (Login,Password,FirstName,LastName) VALUES ('".$inData["login"] . "','" . $inData["password"] . "','" . $inData["firstname"] . "','" . $inData["lastname"] . "')";
+		$stmt = $msql_connection->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (:user, :password, :firstname, :lastname)");
+		 $stmt->execute([
+		 	'user' => $inData["loginName"],
+		 	'password' => $inData["loginPassword"],
+		 	'firstname' => "",
+		 	'lastname' =>  "",
+		 ]);
+
+		returnWithInfo("", "", $inData['loginName']);
+	}
+}
+catch(Exception $e) {
+	returnWithError("Failed while executing query:" . $e->getMessage());
+}
 	
-	function returnWithError( $err )
-	{
-		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
-	}
-	
-	function returnWithInfo( $firstName, $lastName, $id )
-	{
-		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
-	}
+function getRequestInfo()
+{
+	return json_decode(file_get_contents('php://input'), true);
+}
+
+function sendResultInfoAsJson( $obj )
+{
+	header('Content-type: application/json');
+	echo $obj;
+}
+
+function returnWithError( $err )
+{
+	$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
+	sendResultInfoAsJson( $retValue );
+}
+
+function returnWithInfo( $firstName, $lastName, $loginName )
+{
+	$retValue = '{"loginName":"' . $loginName . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+	sendResultInfoAsJson( $retValue );
+}
 	
 ?>
