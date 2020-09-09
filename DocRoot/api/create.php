@@ -58,5 +58,3 @@ function returnWithInfo( $firstName, $lastName, $loginName )
 	$retValue = '{"loginName":"' . $loginName . '","firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 	sendResultInfoAsJson( $retValue );
 }
-
-?>

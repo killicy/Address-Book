@@ -1,5 +1,4 @@
 var sideMenu = false;
-
 function doLogin() {
 
 	var url = '/api/login.php';
@@ -36,6 +35,7 @@ function doCreate() {
 	userId = 0;
 	firstName = "";
 	lastName = "";
+
 	var firstname = $("#fname").val();
 	var lastname = $("#lname").val();
 	var login = $("#uname").val();
@@ -52,7 +52,6 @@ function doCreate() {
 		else {
 			$("#SignUpResult").html("Success");
 			window.location.href = ("index.html");
-
 		}
 	});
 }
