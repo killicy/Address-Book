@@ -9,6 +9,14 @@
 	}
 	else
 	{
+
+		$sql = "SELECT FirstName, LastName, Phone, Address, Email, UserID from Contacts where UserID like '". $inData["userId"] . "'and FirstName='" . $inData["firstName"] . "'and LastName='" . $inData["lastName"] . "'and Phone='" . $inData["phone"] . "'and Address='" . $inData["address"] . "'and Email='" . $inData["email"] . "'";
+		$result = $conn->query($sql);
+		if($result->num_rows > 0){
+			returnWithError("Contact for this UserID already exists!");
+			exit();
+		}
+
 		$sql = "INSERT into Contacts (UserId,FirstName,LastName,Phone,Address,Email) VALUES ('". $inData["userId"] . "','" . $inData["firstName"] . "','" . $inData["lastName"] . "','" . $inData["phone"] . "','" . $inData["address"] . "','" . $inData["email"] . "')";
 		if( $result = $conn->query($sql) != TRUE )
 		{
