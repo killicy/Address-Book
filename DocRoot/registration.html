@@ -23,6 +23,17 @@ input[type=text], select, textarea {
   resize: vertical;
 }
 
+input[type=password], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
 input[type=submit] {
   background-color: #4CAF50;
   color: white;
@@ -48,29 +59,30 @@ input[type=submit]:hover {
 <h3 id = registrationHeader>Registration</h3>
 
 <div id="regDiv">
-  <form action="/action_page.php">
-
-    <div id = "regForm">
-    <label for="fname">First Name</label>
-    <input type="text" id="fname" name="firstname" placeholder="Your First Name..">
+    <div id = "regForm1">
+      <label for="fname">First Name</label>
+      <input type="text" id="fname" name="firstname" placeholder="Your First Name..">
     </div>
-    <label for="lname">Last Name</label>
-    <input type="text" id="lname" name="lastname" placeholder="Your Last Name..">
 
-    <label for="uname">Username</label>
-    <input type="text" id="uname" name="Username" placeholder="Your Username..">
+    <div id = "regForm2">
+      <label for="lname">Last Name</label>
+      <input type="text" id="lname" name="lastname" placeholder="Your Last Name..">
+    </div>
+    <div id = "regForm3">
+      <label for="uname">Username</label>
+      <input type="text" id="loginName" name="loginName" placeholder="Your Username..">
+    </div>
 
-    <label for="pword">Password</label>
-    <input type="text" id="pword" name="Password" placeholder="Your Password..">
-
+    <div id = "regForm4">
+      <label for="pword">Password</label>
+      <input type="password" id="loginPassword" name="loginPassword" placeholder="Your Password..">
+    </div>
 
     <button type = "button" id="signUpButton" class="buttons" onclick="doCreate();"> <span id="signUpButtonText">Register</span> </button>
 
     <div id= "message">
       <span id="SignUpResult"></span>
     </div>
-
-  </form>
 </div>
 
 </body>
