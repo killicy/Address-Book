@@ -3,29 +3,33 @@
 require_once("../config.php");
 $inData = getRequestInfo();
 
-// $sql = "SELECT ID,firstName,lastName from Contacts where FirstName like '" . $inData["firstName"] . "' and LastName like '" . $inData["lastName"] . "' and UserID like '" . $inData["userId"] . "'";
 try {
-	$stmt = $msql_connection->prepare("SELECT ContactID FROM Contacts WHERE ContactID=:contactId AND UserID=:userId");
+	$stmt = $msql_connection->prepare("SELECT * FROM Contacts WHERE UserID LIKE :userId AND ContactID=:contactId");
 	$stmt->execute([
 		'userId' => $inData["userId"],
 		'contactId' => $inData["contactId"],
 	]);
-
+	
 	$contact = $stmt->fetch();
 	
 	if (empty($contact)) {
-		returnWithError("No Records Found");
+		returnWithError("No contact found");
 		exit();
 	}
 	else {
-		// $sql = "DELETE from Contacts where FirstName like '" . $inData["firstName"] . "' and LastName like '" . $inData["lastName"] . "' and UserID like '" . $inData["userId"] . "'";
-		$stmt = $msql_connection->prepare("DELETE FROM Contacts WHERE ContactID=:contactId AND UserID=:userId");
+		$stmt = $msql_connection->prepare("UPDATE Contacts SET FirstName=:fname, LastName=:lname, Phone=:phone, Address=:address, Email=:email WHERE UserID LIKE :userId AND ContactID=:contactId");
 		$stmt->execute([
-			'userId' => $inData["userId"],
 			'contactId' => $inData["contactId"],
+			'userId' => $inData["userId"],
+			'fname' => $inData["firstName"],
+			'lname' => $inData["lastName"],
+			'phone' => $inData["phone"],
+			'address' => $inData["address"],
+			'email' => $inData["email"],
 		]);
 
-		returnWithInfo("Contact deleted");
+		// returnWithInfo($inData['firstName'], $inData['lastName'], $inData['userId'] );
+		returnWithInfo("Contact updated");
 	}
 }
 catch (Exeception $e) {

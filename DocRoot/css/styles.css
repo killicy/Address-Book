@@ -1,130 +1,12 @@
 body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: auto;
   margin: 0;
 
 }
 
-#background {
-  height: 100%;
-  width: 100%;
-  background-image: url('../media/background.jpg');
-  opacity: 1;
-}
 
-
-#para{
-  position: fixed;
-  background-color: rgba(1, 27, 78, .7);
-  height: 100%;
-  width: 100%;
-}
-
-
-#loginDiv {
-  position: fixed;
-
-  border: 3px solid #233957;
-
-  top: 60%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
-  max-height: 500px;
-
-  border-radius: 50px;
-
-  height: 50%;
-  width: 25%;
-
-  background-color: #ffffff;
-  padding: 10px;
-}
-
-
-#UserName {
-  margin-top: 10%;
-  margin-left: 10%;
-}
-
-#passWord {
-  margin-top: 10%;
-  margin-left: 10%;
-
-}
-
-
-#loginName {
-  padding-left: 3%;
-  outline:none;
-  border-radius: 10px;
-  border-color: lightslategrey;
-  text-align: left;
-  font-size: 100%;
-  height: 10%;
-  width: 90%;
-
-  color: 	#233957;
-  font-size: 100%;
-  font-family: "Georgia", Times, serif;
-
-}
-
-#loginPassword {
-  padding-left: 3%;
-  outline:none;
-  border-radius: 10px;
-  border-color: lightslategrey;
-  text-align: left;
-  font-size: 100%;
-  height: 10%;
-  width: 90%;
-
-  color: 	#233957;
-  font-size: 100%;
-  font-family: "Georgia", Times, serif;
-
-}
-
-#loginButton {
-  outline:none;
-  background-color: #005ecd;
-  border-color:#005ecd;
-  margin-top: 10%;
-  border-radius: 10px;
-  text-align: center;
-  margin-left: 10%;
-  width: 81%;
-  height: 12%;
-  cursor: pointer;
-}
-
-#loginButtonText {
-color: #FFFFFF;
-font-size: 20px;
-font-family: "Georgia", Times, serif;
-}
-
-#signUpButton {
-  outline:none;
-  background-color: #03afe6;
-  border-color:#03afe6;
-  border-radius: 2px;
-  margin-top: 5%;
-  border-radius: 10px;
-  text-align: center;
-  margin-left: 10%;
-  width: 81%;
-  height: 12%;
-  cursor: pointer;
-}
-
-#signUpButtonText {
-color: #FFFFFF;
-font-size: 20px;
-font-family: "Georgia", Times, serif;
-}
-
-#registrationHeader {
+#distrationHeader {
   position: fixed;
 
   left: 50%;
@@ -162,6 +44,9 @@ font-family: "Georgia", Times, serif;
   width: 90%;
 }
 
+#regBod {
+  background-color: #011b4e;
+}
 #regDiv {
   position: fixed;
 
@@ -174,11 +59,9 @@ font-family: "Georgia", Times, serif;
 
   border-radius: 50px;
 
-  height: 70%;
-  width: 25%;
 
-
-  min-height: 500px;
+  height: 600px;
+  width: 450px;
 
 
   background-color: #ffffff;
@@ -231,6 +114,7 @@ font-family: "Georgia", Times, serif;
 }
 
 #table {
+  overflow: scroll;
   position: fixed;
   height: calc(100% - 100px);
   width: calc(100% - 100px);
@@ -250,7 +134,10 @@ tr {
 }
 
 th {
-  text-align: left;
+  text-align: center;
+}
+td {
+  text-align: center;
 }
 
 .search{
@@ -261,7 +148,21 @@ th {
   margin-left: 80%;
 }
 
-.delete{
+.deleteContact{
+  display:inline-block;
+  margin-top: 15%;
+  width: 100%;
+  height: 10%;
+
+}
+.addContact{
+  display:inline-block;
+  margin-top: 15%;
+  width: 100%;
+  height: 10%;
+
+}
+.updateContact{
   display:inline-block;
   margin-top: 15%;
   width: 100%;
@@ -274,6 +175,16 @@ th {
   border-radius: 5px;
 }
 #deleteButton{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+#addButton{
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+}
+#updateButton{
   width: 100%;
   height: 100%;
   border-radius: 5px;

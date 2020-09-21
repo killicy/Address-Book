@@ -9,14 +9,14 @@ $lastName = "";
 
 // $sql = "SELECT ID,firstName,lastName FROM Users where Login='" . $inData["login"] . "' and Password='" . $inData["password"] . "'";
 try {
-	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user");
+	$stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users WHERE Login=:user");
 	$stmt->execute([
 		'user' => $inData["login"],
 	]);
 
 	$user = $stmt->fetch();
 	if (!empty($user)) {
-		returnWithError( "User Name Already Exists!" );
+		returnWithError("User Name Already Exists!");
 		exit();
 	}
 	else {
