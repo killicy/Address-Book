@@ -1,0 +1,116 @@
+<html>
+	<head>
+		<title>Address Book</title>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		<script src="js/common.js"></script>
+		<link href="css/styles.css" rel = "stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel = "stylesheet">
+	</head>
+	<body>
+		<div id ="header">
+			<label class="search">
+				<input type="text" id="searched" name="gsearch">
+				<button id = "logout" type="button" onclick="logout()">Logout</button>
+			</search>
+		</div>
+
+		<div id ="tabs">
+			<label class="addContact">
+				<button id = "addButton" type="button" onclick="addTab()">Add</button>
+			</label>
+			<label class="deleteContact">
+				<button id = "deleteButton" type="button" onclick="deleteSelected()">Delete</button>
+			</label>
+			<label class="updateContact">
+				<button id = "updateButton" type="button" onclick="doUpdate()">Update</button>
+			</label>
+		</div>
+
+		<div id ="table">
+		</div>
+
+	</body>
+</html>
+
+
+<script>
+var grid;
+var checkBoxes;
+$(document).ready( function() {
+		document.getElementById("searched").addEventListener("keypress", function (event){
+			if(event.keyCode == 13) {
+				doSearch();
+			}
+		});
+
+		if(sessionStorage.getItem('login') != "true")
+		{
+			window.location.href = ("index.html");
+		}
+		else {
+			$("#table").load("table.html");
+			doLoad();
+		}
+
+		document.body.addEventListener( 'click', function ( event ) {
+  if(event.target.className == 'check') {
+    updateSelected();
+  };
+} );
+
+});
+
+</script>
+
+
+<style>
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+#loginButton {
+  background-color: blue;
+  color: white;
+  padding: 14px 20px;
+	width: 80%;
+	margin-top: 10%;
+	margin-left: 10%;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.imgcontainer {
+  text-align: center;
+}
+
+.container {
+  padding: 16px;
+}
+
+#addC {
+  width: 30%;
+  height: 800px;
+
+	margin: 0 auto;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+
+  border: 1px solid #ccc;
+
+  position: relative;
+  background-color: #b1d0e3;
+  display: flex;
+}
+</style>
