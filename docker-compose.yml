@@ -24,6 +24,16 @@ services:
       MYSQL_DATABASE: 'testdb'
     networks:
       - internal
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 81:80
+    environment:
+      PMA_HOST: 'mariadb'
+      PMA_USER: 'testuser'
+      PMA_PASSWORD: 'testpassword'
+    networks:
+      - internal
 
 networks:
   internal:
