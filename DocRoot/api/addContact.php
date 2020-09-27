@@ -4,8 +4,6 @@ require_once("../config.php");
 $inData = getRequestInfo();
 
 // $sql = "SELECT FirstName, LastName, Phone, Address, Email, UserID from Contacts where UserID like '". $inData["userId"] . "'and FirstName='" . $inData["firstName"] . "'and LastName='" . $inData["lastName"] . "'and Phone='" . $inData["phone"] . "'and Address='" . $inData["address"] . "'and Email='" . $inData["email"] . "'";
-// var_dump($indata);
-
 try {
 	$stmt = $msql_connection->prepare("SELECT ContactID FROM Contacts WHERE UserID LIKE :userId AND FirstName=:fname AND LastName=:lname AND Phone=:phone AND Address=:address AND Email=:email");
 	$stmt->execute([
@@ -18,7 +16,7 @@ try {
 	]);
 	
 	$contact = $stmt->fetch();
-	
+
 	if (!empty($contact)) {
 		returnWithError("Contact for this UserID already exists!");
 		exit();
@@ -61,7 +59,7 @@ function returnWithError( $err )
 
 function returnWithInfo( $firstName, $lastName, $id )
 {
-	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","Message":"Contact created"}';
+	$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","Message":"Contact created", "error":""}';
 	sendResultInfoAsJson( $retValue );
 }
 

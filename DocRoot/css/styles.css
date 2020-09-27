@@ -2,7 +2,189 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   overflow: auto;
   margin: 0;
+  background-image: url('/media/img6.jpg');
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+}
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  background-color: #fff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+input:focus {
+  outline:none;
+}
+
+button:focus {
+  outline:none;
+}
+
+.overlay {
+  background-color: #b1d0e3;
+  width: 100%;
+  height: 100%;            
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  z-index: 999;
+  visibility: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('/media/Success.png');
+}
+
+
+#__lpform_loginPassword {
+  display:none;
+}
+
+.mainpage{
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  -ms-transform: translateY(25%);
+  transform: translateY(25%);
+}
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #324a5e;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#loginBackButton {
+  position: absolute;
+  background: none;
+  color: #324a5e;
+  border: 1px solid #324a5e;
+  display: inline-block;
+  width: 200px;
+  left: calc(50% - 100px);
+  bottom: 25px;
+  padding: 13px 20px;
+}
+
+#hiddenLoginButton {
+  background: none;
+  color: #324a5e;
+  border: 1px solid #324a5e;
+  display: inline-block;
+  display: none;
+}
+
+.imgcontainer {
+  padding-top: 10px;
+  text-align: left;
+  margin-left: -6px;
+  margin-bottom: -17px;
+  box-sizing: border-box;
+  padding-right: 20px;
+}
+
+.imgcontainer img { 
+  max-width: 100%;
+  max-height: 106px;
+  display: inline-block;
+}
+
+.container {
+  padding: 16px;
+  position: relative;
+}
+
+span.psw {
+  text-align: center;
+  padding-top: 10px;
+  display: block;
+
+}
+span.psw a {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+#loginDiv {
+  width: 800px;
+  height: 400px;
+  margin: 7% 20px 0 20px;
+  position: relative;
+  background-color: #b1d0e3;
+  display: flex;
+  box-shadow: 0 0 10px #333;
+}
+
+.login{
+  width: 100%;
+  height: 400px;
+  position: relative
+  background-color: red;
+  flex: 50%;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 500px) {
+  .psw {
+    padding-top: 10px;
+  }
+  #image {
+    display: none;
+  }
+  #loginDiv {
+    margin-top: 50px;
+    width: 800px;
+    height: 445px;
+  }
+  #hiddenLoginButton {
+  background: none;
+  color: #324a5e;
+  border: 1px solid #324a5e;
+  display: inline-block;
+  visibility: visible;
+}
+  .imgcontainer {
+    padding-top: 10px;
+    text-align: left;
+    margin-left: -6px;
+    margin-bottom: -17px;
+  }
+
+  .imgcontainer img { 
+    max-width: 100%;
+    max-height: 96px;
+    display: inline-block;
+  }
 }
 
 
@@ -16,37 +198,13 @@ body {
 
 #message{
   text-align: center;
-}
-
-#fname {
-  padding-left: 3%;
-  outline:none;
-  border-radius: 10px;
-  border-color: lightslategrey;
-  text-align: left;
-  font-size: 100%;
-  font-family: "Georgia", Times, serif;
-  margin: auto;
-  height: 10%;
-  width: 90%;
-}
-
-#lname {
-  padding-left: 3%;
-  outline:none;
-  border-radius: 10px;
-  border-color: lightslategrey;
-  text-align: left;
-  font-size: 100%;
-  font-family: "Georgia", Times, serif;
-  margin: auto;
-  height: 10%;
-  width: 90%;
+  color: #ef4052;
 }
 
 #regBod {
   background-color: #011b4e;
 }
+
 #regDiv {
   position: fixed;
 
@@ -68,20 +226,16 @@ body {
   padding: 10px;
 
   text-align: left;
-
-
 }
 
 #regForm1 {
   margin-top: 10%;
   margin-left: 10%;
-
 }
 
 #regForm2 {
   margin-top: 10%;
   margin-left: 10%;
-
 }
 
 #regForm3 {
@@ -93,99 +247,235 @@ body {
 #regForm4 {
   margin-top: 5%;
   margin-left: 10%;
-
 }
 
 #header {
-  position: fixed;
-  height: 100px;
+  height: 75px;
   width: 100%;
-
-  background-color: black;
+  background-color: #2b3a4e;
+  background-image: url('/media/LogoMain.png');
+  background-repeat: no-repeat;
   opacity: 1;
 }
 
+.editable td:nth-child(n + 2) div {
+  border: 1px solid black;
+  border-radius: 3px;
+  height: 27px;
+  border-collapse: none;
+  padding-top: 10px;
+}
+
+.editable td {
+  outline: none;
+}
+
+#editButton {
+  width: calc(100% - 62px);
+  margin-left: 5px;
+  display: none;
+}
+
+#header button, #header input {
+  display: block;
+  width: 140px;
+  height: 36px;
+  margin: 0;
+  float: right;
+  margin-right: 5px;
+  line-height: 10px;
+}
+
+#header button, .searchIcon {
+  margin-top: 20px;
+}
+
+.searchIcon {
+  float: right;
+  position: relative;
+}
+
+.searchIcon::before {
+  content: ' \2315';
+  font-size: 20px;
+  color: #444;
+  left: 5px;
+  top: 6px;
+  position: absolute;
+}
 #tabs {
-  position: fixed;
-  margin-top: 100px;
-  height: calc(100% - 100px);
-  width: 100px;
-  background-color: green;
+  height: calc(100vh - 147px);
+  float: left;
+  background-color: #f1f1f1;
+  border-right: 1pt solid #e6e6e6;
 }
 
 #table {
-  overflow: scroll;
-  position: fixed;
-  height: calc(100% - 100px);
-  width: calc(100% - 100px);
-  margin-left: 100px;
-  margin-top: 100px;
-  background-color: red;
+  overflow: hidden;
+  height: 100%;
+  width: calc(100% - 62px);
+  padding-left: 5px;
+  padding-right: 5px;
+
 }
 
 table {
-  overflow: scroll;
   border-collapse: collapse;
-
+  margin-top: 4px;
 }
 tr {
-  border: 1pt solid black;
-  background-color: blue;
+  height: 42px;
+  border-bottom: 1px solid #e6e6e6;
+  font-size: 14px;
 }
 
 th {
   text-align: center;
+  border: 1pt solid #e6e6e6;
+  background-color: #f1f1f1;
+  color: #324a5e;
+  font-size: 14px;
+  height: 42px;
 }
 td {
   text-align: center;
 }
+u {
+  color: #105e99;
+}
+
+strong {
+  color: #324a5e;
+}
 
 .search{
-  display:inline-block;
-  height: 25px;
-  width: 15%;
-  margin-top: 50px;
-  margin-left: 80%;
+  float: right;
+  margin-right: 30px;
 }
 
 .deleteContact{
-  display:inline-block;
-  margin-top: 15%;
   width: 100%;
   height: 10%;
 
 }
 .addContact{
-  display:inline-block;
-  margin-top: 15%;
   width: 100%;
   height: 10%;
-
 }
 .updateContact{
-  display:inline-block;
-  margin-top: 15%;
   width: 100%;
   height: 10%;
-
 }
+
+#contactOverlay {
+  position: absolute;
+  z-index: 9;
+  top: -30px;
+  height: calc(100vh);
+  width: calc(100vw);
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+#addC {
+  width: 30%;
+  margin: 115px auto;
+  background-color: #b1d0e3;
+  box-shadow: 0 0 10px #333;
+}
+
+#blankRecords {
+  text-align: center;
+  color: #999;
+  padding-top: 50px;
+}
+
+#blankRecords img {
+  filter: grayscale(100%);
+  width: 25%;
+}
+
 #searched{
   height: 100%;
   width: 100%;
-  border-radius: 5px;
 }
 #deleteButton{
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: #b9b9b9;
+  background-image: url('/media/Delete.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  margin-top: 2px;
 }
 #addButton{
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+  background-color: #b1d0e3;
+  background-image: url('/media/Add.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
 #updateButton{
+  width: 50px;
+  height: 50px;
+  background-color: #b9b9b9;
+  background-image: url('/media/Edit.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  margin-top: 2px;
+}
+
+#image {
+    width: 100%;
+    flex: 50%;
+    height: 400px;
+    position: relative;
+    background-image: url(/media/cuteBackground.png);
+    background-position: center center;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+}
+
+#wrapper {
+  width: 95%;
+  height: 90%;
+  margin: auto;
+  position: relative;
+  background: white;
+  margin-top: 30px;
+  margin-bottom: : 30px;
+  overflow: hidden;
+}
+
+#addFail {
+  text-align: center;
+  color: red;
+}
+
+#addCButton {
+  background-color: #324a5e;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
   width: 100%;
-  height: 100%;
-  border-radius: 5px;
+}
+
+.title {
+  padding-top: 15px;
+  color: #324a5e;
+  font-size: 24px;
+  text-align: center;
+}
+
+#cancelCButton {
+  background: none;
+  color: #324a5e;
+  border: 1px solid #324a5e;
 }
