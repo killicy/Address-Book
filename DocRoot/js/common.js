@@ -74,11 +74,13 @@ function addDeleteTab() {
 	}
 	console.log(counter);
 	if (counter != 0) {
-		$("#contactOverlay").show().load("deletedialogue.html", function() {
+		$("#contactOverlay").load("deletedialogue.html", function() {
 			if (counter == 1)
 				$("#number").html(counter + " contact");
 			else
 				$("#number").html(counter + " contacts");
+
+			$("#contactOverlay").show();
 		});
 	}
 }
