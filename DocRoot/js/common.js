@@ -65,6 +65,24 @@ function addTab() {
 	$("#contactOverlay").show().load("addcontact.html");
 }
 
+function addDeleteTab() {
+	var counter = 0;
+	var grid = document.getElementById("contactTable");
+	var checkBoxes = $("td INPUT", grid);
+	for (var i in checkBoxes) {
+		if (checkBoxes[i].checked) { counter++ } 
+	}
+	console.log(counter);
+	if (counter != 0) {
+		$("#contactOverlay").show().load("deletedialogue.html", function() {
+			if (counter == 1)
+				$("#number").html(counter + " contact");
+			else
+				$("#number").html(counter + " contacts");
+		});
+	}
+}
+
 function disableOverlay(event) {
 	var l = document.getElementById("contactOverlay");
 
@@ -80,20 +98,29 @@ function doAdd() {
 	var email = $("#EmailAdd").val()
 	var address = $("#OrgNameAdd").val()
 	var phone = $("#PhoneNumAdd").val()
-	var jsonPayload = {userId: parseInt(sessionStorage.getItem('userId')), firstName: firstname, lastName: lastname, phone: phone, address: address, email: email};
-	$.post(url, JSON.stringify(jsonPayload), function(data) {
-		if (data.error) {
-			$("#addFail").html("Contact already exists!");
-		}
-		else {
-			$("#blankRecords").html("");
-			$("#table").get(0).firstChild.remove();
-			$("#table").load("table.html");
-			doLoad();
-			isFocused = false;
-			clearAdd();
-		}
-	});
+
+	if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)) && email.length !== 0) {
+		$("#addFail").html("Invalid email format");
+	}
+	else if (!(/^((\(\d{3}\)?)|(\d{3}))([\s-./]?)(\d{3})([\s-./]?)(\d{4})/.test(phone)) && phone.length !== 0) {
+		$("#addFail").html("Invalid phone format");
+	}
+	else {
+		var jsonPayload = {userId: parseInt(sessionStorage.getItem('userId')), firstName: firstname, lastName: lastname, phone: phone, address: address, email: email};
+		$.post(url, JSON.stringify(jsonPayload), function(data) {
+			if (data.error) {
+				$("#addFail").html("Contact already exists!");
+			}
+			else {
+				$("#blankRecords").html("");
+				$("#table").get(0).firstChild.remove();
+				$("#table").load("table.html");
+				doLoad();
+				isFocused = false;
+				clearAdd();
+			}
+		});
+	}
 }
 
 function doLoad() {
@@ -183,7 +210,7 @@ function deleteSelected() {
 	var grid = document.getElementById("contactTable");
 	document.activeElement.blur();
 	var checkBoxes = grid.getElementsByTagName("INPUT");
-	var length = checkBoxes.length
+	var length = checkBoxes.length;
 	for (var i = length - 1;  i > 0; i--){
     	if(checkBoxes[i].checked)
     	{
