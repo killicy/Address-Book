@@ -13,6 +13,9 @@
       <div id = 'loginDiv'>
         <div id="image">
           <button type = "button" id="loginBackButton" class="buttons" onclick="window.location='index.html';"> <span id="signUpButtonText">Login</span> </button>
+           <div id= "message">
+              <span id="SignUpResult"></span>
+            </div>
         </div>
         <form class = 'login' action="#" method="post">
           <div class="container">
@@ -25,9 +28,7 @@
             <input type="text" id = "loginName" placeholder="Enter Username" required>
             <label for="psw"><strong>Password</strong></label>
             <input type="password" id = "loginPassword" placeholder="Enter Password" required>
-            <div id= "message">
-              <span id="SignUpResult"></span>
-            </div>
+            <input type="password" id = "confirmPassword" placeholder="Confirm Password" required>
             <button type = "button" id="signUpButton" class="buttons" onclick="doCreate();"> <span id="signUpButtonText">Register</span> </button>
             <button type = "button" id="hiddenLoginButton" class="buttons" onclick="window.location='index.html';"> <span id="signUpButtonText">Login</span> </button>
           </div>

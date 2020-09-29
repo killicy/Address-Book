@@ -32,7 +32,7 @@ button:focus {
 .overlay {
   background-color: #b1d0e3;
   width: 100%;
-  height: 100%;            
+  height: 98%;            
   position: absolute;
   top: 0;
   left: 0;
@@ -63,8 +63,8 @@ button:focus {
 
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 11px 20px;
+  margin: 7px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
@@ -92,7 +92,7 @@ button:hover {
   display: inline-block;
   width: 200px;
   left: calc(50% - 100px);
-  bottom: 25px;
+  bottom: 4px;
   padding: 13px 20px;
 }
 
@@ -120,7 +120,7 @@ button:hover {
 }
 
 .container {
-  padding: 16px;
+  padding: 13px;
   position: relative;
 }
 
@@ -137,7 +137,7 @@ span.psw a {
 
 #loginDiv {
   width: 800px;
-  height: 400px;
+  height: 415px;
   margin: 7% 20px 0 20px;
   position: relative;
   background-color: #b1d0e3;
@@ -197,6 +197,7 @@ span.psw a {
 }
 
 #message{
+  padding-top: 30px;
   text-align: center;
   color: #ef4052;
 }
@@ -432,7 +433,7 @@ strong {
 #image {
     width: 100%;
     flex: 50%;
-    height: 400px;
+    height: 415px;
     position: relative;
     background-image: url(/media/cuteBackground.png);
     background-position: center center;

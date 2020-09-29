@@ -29,6 +29,7 @@ function doRegister() {
 }
 
 function doCreate() {
+	$("#SignUpResult").html("");
 	var url = '/api/create.php';
 	var userId = 0;
 	var firstName = "";
@@ -37,10 +38,15 @@ function doCreate() {
 	var lastname = $("#lname").val();
 	var login = $("#loginName").val();
 	var password = $("#loginPassword").val();
+	var confirm = $("#confirmPassword").val();
 
 	var jsonPayload = {login: login, password: password, fname: firstname, lname: lastname};
-	if((login.length == 0 || password.length == 0) || firstname.length == 0 || lastname.length == 0){
+	if((login.length == 0 || password.length == 0) || firstname.length == 0 || lastname.length == 0 || confirm.length == 0){
 		$("#SignUpResult").html("Please fill all fields");
+	}
+	else if (confirm !== password) {
+		$("#SignUpResult").html("Passwords don't match");
+		$("#confirmPassword").html("");
 	}
 	else {
 		$.post(url, JSON.stringify(jsonPayload), function(data) {

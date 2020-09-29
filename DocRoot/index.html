@@ -11,7 +11,11 @@
   <body>
     <div class = "mainpage">
       <div id = 'loginDiv'>
-        <div id="image"></div>
+        <div id="image">
+          <div id= "message">
+            <span id="SignUpResult"></span>
+          </div>
+        </div>
         <form class = 'login' action="#" method="post">
           <div class="imgcontainer">
             <img src="media/Logo.png" alt="Avatar" class="Logo_class">
@@ -21,9 +25,7 @@
             <input type="text" id = "loginName" placeholder="Enter Username"required>
             <label for="psw"><strong>Password</strong></label>
             <input type="password" id = "loginPassword" placeholder="Enter Password" required>
-            <div id= "message">
-              <span id="SignUpResult"></span>
-            </div>
+            <br><br>
             <button type = "button" id="loginButton" class="buttons" onclick="doLogin();"> <span id="loginButtonText">Log In</span> </button>
             <span class="psw"> <a href="registration.html" style="color: black; text-decoration: none;">Need an account? <u>Register</u></a></span>
           </div>
