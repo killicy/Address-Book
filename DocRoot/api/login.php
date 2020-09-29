@@ -11,7 +11,7 @@ $lastName = "";
 $stmt = $msql_connection->prepare("SELECT ID,firstName,lastName FROM Users where Login=:user AND Password=:pass");
 $stmt->execute([
 	'user' => $inData["login"],
-	'pass' => $inData["password"]
+	'pass' => md5($inData["password"])
 ]);
 $user = $stmt->fetch();
 

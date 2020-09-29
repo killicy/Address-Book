@@ -24,7 +24,7 @@ try {
 		$stmt = $msql_connection->prepare("INSERT INTO Users (Login, Password, FirstName, LastName) VALUES (:user, :password, :firstname, :lastname)");
 		 $stmt->execute([
 		 	'user' => $inData["login"],
-		 	'password' => $inData["password"],
+		 	'password' => md5($inData["password"]),
 		 	'firstname' => $inData["fname"],
 		 	'lastname' =>  $inData["lname"],
 		 ]);
