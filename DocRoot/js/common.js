@@ -135,7 +135,7 @@ function doLoad() {
 			$("#blankRecords").html("");
 			while(i < data.contacts.length) {
 				var newCell = '<tr data-id="' + data.contacts[i].ContactID + '">';			
-				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\"><span class=\"checkmark\"></span></label></td>"
+				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\" onchange=\"onCheckmark(event);\"><span class=\"checkmark\"></span></label></td>"
 				newCell = newCell + "<td><div>";
 				newCell = newCell + data.contacts[i].FirstName;
 				newCell = newCell + "</div></td>";
@@ -266,6 +266,8 @@ function doUpdate() {
 				}
 		}
 	}
+
+	onCheckmark();
 }
 
 function update(contactId, rowD) {
@@ -314,7 +316,7 @@ function doSearch() {
 			$("#blankRecords").html("");
 			while(i < data.results.length) {
 				var newCell = "<tr>";
-				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\"><span class=\"checkmark\"></span></label></td>"
+				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\" onchange=\"onCheckmark(event);\"><span class=\"checkmark\"></span></label></td>"
 				newCell = newCell + "<td><div>";
 				newCell = newCell + data.results[i].FirstName;
 				newCell = newCell + "</div></td>";
@@ -361,9 +363,32 @@ function checkAll(event) {
   	for(var i=0; i < cbs.length; i++) {
       	cbs[i].checked = event.target.checked;
   	}
+
+  	onCheckmark();
+
 }
 
 function clearAdd() {
 	var page = document.getElementById("contactOverlay");
 	$(page).hide();
+}
+
+function onCheckmark(event) {
+	var counter = 0;
+	var grid = document.getElementById("contactTable");
+	var checkBoxes = $("td INPUT", grid);
+	for (var i in checkBoxes) {
+		if (checkBoxes[i].checked) {
+			counter++;
+		} 
+	}
+
+	if (counter > 0) {
+		$("#deleteButton").css("background-color", "#e49f9f");
+		$("#updateButton").css("background-color", "#b1e3c3");
+	} 
+	else {
+		$("#deleteButton").css("background-color", "#b9b9b9");
+		$("#updateButton").css("background-color", "#b9b9b9");
+	}
 }
