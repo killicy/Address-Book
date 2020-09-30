@@ -322,7 +322,7 @@ function doSearch() {
 			var i = 0;
 			$("#blankRecords").html("");
 			while(i < data.results.length) {
-				var newCell = "<tr>";
+				var newCell = '<tr data-id="' + data.results[i].ContactID + '">';
 				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\" onchange=\"onCheckmark(event);\"><span class=\"checkmark\"></span></label></td>"
 				newCell = newCell + "<td><div>";
 				newCell = newCell + data.results[i].FirstName;
