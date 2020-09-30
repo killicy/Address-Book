@@ -108,6 +108,7 @@ function doAdd() {
 		$("#addFail").html("Invalid phone format");
 	}
 	else {
+		phone = phoneC(phone);
 		var jsonPayload = {userId: parseInt(sessionStorage.getItem('userId')), firstName: firstname, lastName: lastname, phone: phone, address: address, email: email};
 		$.post(url, JSON.stringify(jsonPayload), function(data) {
 			if (data.error) {
@@ -125,6 +126,24 @@ function doAdd() {
 	}
 }
 
+function phoneC(phone){
+	if(phone.length == 10)
+	{
+		 phone = phone.replace(/\D/g, '');
+		 phone = phone.slice(0,3) + "-" + phone.slice(3,6)+ "-" + phone.slice(6,10);
+	}
+	else if(phone.length == 7)
+	{
+		 phone = phone.replace(/\D/g, '');
+		 phone = phone.slice(0,3) + "-" + phone.slice(3,7);
+	}
+	else if(phone.length == 11)
+	{
+		 phone = phone.replace(/\D/g, '');
+		 phone = "+" + phone.slice(0,1) + "-" + phone.slice(1,4) + "-" + phone.slice(4,7)+ "-" + phone.slice(7,11);
+	}
+	return phone;
+}
 
 function doLoad() {
 	var url = '/api/read.php';
