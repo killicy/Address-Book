@@ -70,7 +70,7 @@ function addDeleteTab() {
 	var grid = document.getElementById("contactTable");
 	var checkBoxes = $("td INPUT", grid);
 	for (var i in checkBoxes) {
-		if (checkBoxes[i].checked) { counter++ } 
+		if (checkBoxes[i].checked) { counter++ }
 	}
 	console.log(counter);
 	if (counter != 0) {
@@ -125,6 +125,7 @@ function doAdd() {
 	}
 }
 
+
 function doLoad() {
 	var url = '/api/read.php';
 	var jsonPayload = {userId: parseInt(sessionStorage.getItem('userId'))};
@@ -136,7 +137,7 @@ function doLoad() {
 			var i = 0;
 			$("#blankRecords").html("");
 			while(i < data.contacts.length) {
-				var newCell = '<tr data-id="' + data.contacts[i].ContactID + '">';			
+				var newCell = '<tr data-id="' + data.contacts[i].ContactID + '">';
 				newCell = newCell + "<td><label><input class = \"check\" type=\"checkbox\" onchange=\"onCheckmark(event);\"><span class=\"checkmark\"></span></label></td>"
 				newCell = newCell + "<td><div>";
 				newCell = newCell + data.contacts[i].FirstName;
@@ -159,7 +160,7 @@ function doLoad() {
 				newCell = newCell + "</div></td>";
 
 				newCell = newCell + "</tr>";
-				
+
 				newEl = $(newCell);
 				newEl.children('td').keypress(function(event) {
 					if ( event.which == 13 ) {
@@ -171,6 +172,8 @@ function doLoad() {
 				i++;
 			}
 			resize();
+			var tab = document.getElementById("contactTable");
+			sorttable.makeSortable(tab);
 		}
 		else {
 			$("#blankRecords").html("Nothing here yet, add some contacts<br><br> <img src = '/media/friends.png'>");
@@ -195,7 +198,7 @@ function updateSelected() {
 	 var grid = document.getElementById("contactTable");
 	 var checkBoxes = grid.getElementsByTagName("INPUT");
 
-	 for (var i = 0; i < checkBoxes.length; i++) {
+	 for (var i = 1; i < checkBoxes.length; i++) {
 	 	var row = $(checkBoxes[i]).parents('tr');
 		if (checkBoxes[i].checked) {
 			$('td div', row).attr('contenteditable', true);
@@ -243,7 +246,7 @@ function doUpdate() {
 			flag = true;
 		}
 	}
-	
+
 	if (flag) { isEditing = !isEditing;}
 
 	if (isEditing && flag) {
@@ -252,11 +255,11 @@ function doUpdate() {
 	}
 	else {
 		$("#editButton").hide();
-		if (allSelected) { 
-			var i = 1; 
+		if (allSelected) {
+			var i = 1;
 			checkBoxes[0].checked = false;
 			allSelected = false;
-		} else { 
+		} else {
 			var i = 0;
 		}
 		var length = checkBoxes.length
@@ -298,7 +301,7 @@ function doDelete(contactId) {
 	$.post(url, JSON.stringify(jsonPayload), function(data) {
 		if (data.error !== undefined) {
 			$("#blankRecords").html("Failed to delete");
-		}	
+		}
 	});
 }
 
@@ -382,13 +385,13 @@ function onCheckmark(event) {
 	for (var i in checkBoxes) {
 		if (checkBoxes[i].checked) {
 			counter++;
-		} 
+		}
 	}
 
 	if (counter > 0) {
 		$("#deleteButton").css("background-color", "#e49f9f");
 		$("#updateButton").css("background-color", "#b1e3c3");
-	} 
+	}
 	else {
 		$("#deleteButton").css("background-color", "#b9b9b9");
 		$("#updateButton").css("background-color", "#b9b9b9");
